@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  /* Living Ledger Design Tokens */
+  --color-surface: #f7fbf0;
+  --color-surface-dim: #d7dbd2;
+  --color-surface-bright: #f7fbf0;
+  --color-surface-container: #ebefe5;
+  --color-surface-container-high: #e5eadf;
+  --color-surface-container-highest: #e0e4da;
+  --color-surface-container-low: #f1f5eb;
+  --color-surface-container-lowest: #ffffff;
+
+  --color-primary: #0d631b;
+  --color-primary-container: #2e7d32;
+  --color-primary-fixed: #a3f69c;
+  --color-primary-fixed-dim: #88d982;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #cbffc2;
+  --color-on-surface: #181d17;
+  --color-on-surface-variant: #40493d;
+
+  --color-secondary: #005db7;
+  --color-secondary-container: #64a1ff;
+  --color-secondary-fixed: #d6e3ff;
+  --color-on-secondary: #ffffff;
+
+  --color-tertiary: #8e3d00;
+  --color-tertiary-container: #b45000;
+  --color-tertiary-fixed: #ffdbca;
+  --color-tertiary-fixed-dim: #ffb68f;
+  --color-on-tertiary-container: #ffeee6;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  --color-outline: #707a6c;
+  --color-outline-variant: #bfcaba;
+
+  --color-inverse-surface: #2d322b;
+  --color-inverse-on-surface: #eef2e8;
+  --color-inverse-primary: #88d982;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* Global resets & base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 999px;
+}
+
+/* Sidebar ring animation */
+@keyframes ringDraw {
+  from { stroke-dashoffset: 213.6; }
+  to { stroke-dashoffset: 38.4; }
+}
+
+.ring-animate {
+  animation: ringDraw 1.5s ease-out forwards;
+}
+
+/* Smooth page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Glass effect utility */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Ghost border utility */
+.ghost-border {
+  border: 1px solid rgba(191, 202, 186, 0.15);
+}
+
+/* Gradient primary button */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #0d631b, #2e7d32);
+}
+.btn-primary-gradient:hover {
+  background: linear-gradient(315deg, #0d631b, #2e7d32);
+}
