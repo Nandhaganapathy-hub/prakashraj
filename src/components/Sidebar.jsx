@@ -85,6 +85,28 @@ export default function Sidebar() {
           {!collapsed && <p className="text-[0.625rem] text-on-surface-variant uppercase tracking-wider">Carbon Positive</p>}
         </div>
 
+        {/* Theme Toggle */}
+        <div className="flex items-center justify-center p-2">
+          <button
+            onClick={() => {
+              const root = document.documentElement;
+              if (root.classList.contains('dark')) {
+                root.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+              } else {
+                root.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+              }
+              // Force re-render to update icon or text if needed
+              setCollapsed(c => c);
+            }}
+            className="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-container-highest flex items-center justify-center text-on-surface transition-colors focus:outline-none"
+            aria-label="Toggle theme"
+          >
+            <span className="material-symbols-outlined text-xl">palette</span>
+          </button>
+        </div>
+
         {/* User Profile */}
         <div className="flex items-center gap-3 p-2 rounded-xl bg-surface-container-low">
           <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary text-xs font-bold flex-shrink-0">
