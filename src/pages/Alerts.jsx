@@ -98,9 +98,9 @@ function ActivityLogs() {
 
 function DeploymentBanner() {
   return (
-    <div className="bg-gradient-to-r from-primary-container to-primary rounded-xl p-5 flex items-center justify-between">
+    <div className="bg-gradient-to-r from-primary-container to-primary rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
+        <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
           <span className="material-symbols-outlined text-on-primary text-2xl">local_shipping</span>
         </div>
         <div>
@@ -108,7 +108,7 @@ function DeploymentBanner() {
           <p className="text-xs text-on-primary/70">12 Vehicles in Transit across Metro Area</p>
         </div>
       </div>
-      <button className="bg-white/20 backdrop-blur-sm text-on-primary text-xs font-semibold px-4 py-2 rounded-lg hover:bg-white/30 transition-colors">
+      <button className="bg-white/20 backdrop-blur-sm text-on-primary text-xs font-semibold px-4 py-2 rounded-lg hover:bg-white/30 transition-colors shrink-0">
         View Fleet
       </button>
     </div>
@@ -135,12 +135,12 @@ export default function Alerts() {
 
   return (
     <div className={`p-8 max-w-[1400px] mx-auto transition-all duration-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-[2rem] font-extrabold text-on-surface tracking-tight">System Alerts</h1>
           <p className="text-sm text-on-surface-variant mt-1">Real-time monitoring of the food redistribution chain</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {filters.map(f => (
             <button key={f} onClick={() => setFilter(f)}
               className={`text-xs font-medium px-3.5 py-2 rounded-xl capitalize transition-colors ${filter === f ? 'btn-primary-gradient text-on-primary' : 'bg-surface-container-lowest ghost-border text-on-surface-variant hover:text-on-surface'}`}>
@@ -150,8 +150,8 @@ export default function Alerts() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
-        <div className="col-span-2 space-y-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="lg:col-span-2 space-y-5">
           {/* Critical Section */}
           <div>
             <div className="flex items-center gap-2 mb-3">

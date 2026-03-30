@@ -30,14 +30,14 @@ function ToggleSwitch({ label, description, defaultChecked = false }) {
   const [checked, setChecked] = useState(defaultChecked)
 
   return (
-    <div className="flex items-center justify-between py-3">
-      <div>
+    <div className="flex items-center justify-between py-3 gap-4">
+      <div className="flex-1">
         <p className="text-sm font-medium text-on-surface">{label}</p>
         {description && <p className="text-xs text-on-surface-variant mt-0.5">{description}</p>}
       </div>
       <button
         onClick={() => setChecked(!checked)}
-        className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${checked ? 'bg-primary' : 'bg-surface-container-highest'}`}
+        className={`relative w-11 h-6 rounded-full transition-colors duration-200 shrink-0 ${checked ? 'bg-primary' : 'bg-surface-container-highest'}`}
       >
         <div className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${checked ? 'translate-x-5.5' : 'translate-x-0.5'}`} />
       </button>
@@ -96,9 +96,9 @@ export default function Settings() {
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex gap-1 bg-surface-container-low rounded-xl p-1 mb-8">
+      <div className="flex flex-col sm:flex-row gap-1 bg-surface-container-low rounded-xl p-1 mb-8 overflow-x-auto">
         {['Overview', 'History', 'Sustainability'].map((tab, i) => (
-          <button key={tab} className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all ${i === 0 ? 'bg-surface-container-lowest text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}>
+          <button key={tab} className={`flex-1 min-w-[120px] py-2.5 rounded-lg text-sm font-medium transition-all ${i === 0 ? 'bg-surface-container-lowest text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'}`}>
             {tab}
           </button>
         ))}
@@ -117,7 +117,7 @@ export default function Settings() {
               <button className="text-xs text-primary font-medium mt-1 hover:underline">Change Avatar</button>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
             <InputField label="Full Name" value="Alex Rivera" />
             <InputField label="Email" value="alex.rivera@ledger.org" type="email" />
             <InputField label="Phone" value="+1 (555) 042-1988" type="tel" />
@@ -127,17 +127,17 @@ export default function Settings() {
 
         <SettingsSection icon="share" title="Data Portability">
           <p className="text-xs text-on-surface-variant mb-4">Export or import your operational data for auditing and compliance purposes.</p>
-          <div className="flex gap-3">
-            <button className="btn-primary-gradient text-on-primary px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button className="btn-primary-gradient text-on-primary px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/20 transition-all">
               <span className="material-symbols-outlined text-sm">download</span>
               Export All Data
             </button>
-            <button className="bg-surface-container-high text-on-surface-variant px-4 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+            <button className="bg-surface-container-high text-on-surface-variant px-4 py-2.5 rounded-xl text-xs font-medium flex items-center justify-center gap-2 hover:bg-surface-container-highest transition-colors">
               <span className="material-symbols-outlined text-sm">upload</span>
               Import Dataset
             </button>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-3">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
             {['CSV', 'JSON', 'PDF'].map(f => (
               <div key={f} className="bg-surface-container-low rounded-xl p-3 text-center">
                 <span className="material-symbols-outlined text-on-surface-variant text-lg">description</span>
@@ -175,7 +175,7 @@ export default function Settings() {
           <p className="text-xs text-on-surface-variant mb-4 leading-relaxed">
             Irreversible actions that affect the core ledger state. Wipe operations are logged for security.
           </p>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3">
             <button className="bg-error/10 text-error px-4 py-2.5 rounded-xl text-xs font-semibold hover:bg-error/20 transition-colors">
               Reset Predictions
             </button>

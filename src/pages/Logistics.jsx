@@ -80,28 +80,28 @@ export default function Logistics() {
   return (
     <div className={`p-8 max-w-[1400px] mx-auto transition-all duration-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-[2rem] font-extrabold text-on-surface tracking-tight">Redistribution Hub</h1>
           <p className="text-sm text-on-surface-variant mt-1">Active Fleet: <span className="font-semibold text-primary">12 vehicles</span></p>
         </div>
-        <button className="btn-primary-gradient text-on-primary px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 flex items-center gap-2">
+        <button className="btn-primary-gradient text-on-primary px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 flex items-center justify-center gap-2 w-fit">
           <span className="material-symbols-outlined text-lg">add_circle</span>
           New Dispatch
         </button>
       </div>
 
       {/* Fleet Stats */}
-      <div className="grid grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <FleetStat value="8" label="Active Deliveries" icon="local_shipping" accent />
         <FleetStat value="34m" label="Avg. Route Time" icon="timer" />
         <FleetStat value="85kg" label="Waste Diverted Today" icon="recycling" />
         <FleetStat value="2" label="Critical Alerts" icon="warning" />
       </div>
 
-      <div className="grid grid-cols-5 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
         {/* Delivery Queue */}
-        <div className="col-span-3">
+        <div className="lg:col-span-3">
           <h3 className="text-lg font-bold text-on-surface mb-4">Delivery Queue</h3>
           <div className="space-y-3">
             {deliveries.map(d => <DeliveryCard key={d.name} {...d} />)}
@@ -140,7 +140,7 @@ export default function Logistics() {
         </div>
 
         {/* Fleet Status */}
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <h3 className="text-lg font-bold text-on-surface mb-4">Fleet Operational Status</h3>
           <div className="space-y-3">
             {drivers.map(d => <DriverCard key={d.name} {...d} />)}

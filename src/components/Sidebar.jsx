@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const navItems = [
   { to: '/', icon: 'dashboard', label: 'Dashboard' },
@@ -10,12 +10,22 @@ const navItems = [
   { to: '/settings', icon: 'settings', label: 'Settings' },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ mobileOpen, setMobileOpen }) {
   const [collapsed, setCollapsed] = useState(false)
   const location = useLocation()
 
+  // Close mobile sidebar on route change
+  useEffect(() => {
+    if (mobileOpen) setMobileOpen(false)
+  }, [location.pathname])
+
   return (
-    <aside className={`${collapsed ? 'w-20' : 'w-64'} flex flex-col bg-surface-container-lowest h-screen transition-all duration-300 ease-in-out relative z-10`}>
+    <aside className={`
+      fixed md:relative z-50 h-screen transition-transform duration-300 ease-in-out
+      ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'}
+      ${collapsed ? 'md:w-20' : 'md:w-64'} 
+      flex flex-col bg-surface-container-lowest w-64 md:border-r border-surface-container
+    `}>
       {/* Header */}
       <div className="p-5 pb-2">
         <div className="flex items-center gap-3">
@@ -32,7 +42,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         {navItems.map(item => (
           <NavLink
             key={item.to}
@@ -86,7 +96,7 @@ export default function Sidebar() {
         </div>
 
         {/* Theme Toggle */}
-        <div className="flex items-center justify-center p-2">
+        <div className="flex items-center justify-center p-2 hidden md:flex">
           <button
             onClick={() => {
               const root = document.documentElement;
@@ -97,7 +107,6 @@ export default function Sidebar() {
                 root.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
               }
-              // Force re-render to update icon or text if needed
               setCollapsed(c => c);
             }}
             className="w-10 h-10 rounded-full bg-surface-container-high hover:bg-surface-container-highest flex items-center justify-center text-on-surface transition-colors focus:outline-none"
@@ -108,7 +117,7 @@ export default function Sidebar() {
         </div>
 
         {/* User Profile */}
-        <div className="flex items-center gap-3 p-2 rounded-xl bg-surface-container-low">
+        <div className="flex items-center gap-3 p-2 rounded-xl bg-surface-container-low hidden md:flex">
           <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary text-xs font-bold flex-shrink-0">
             AR
           </div>
@@ -121,10 +130,10 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Collapse Button */}
+      {/* Collapse Button - Hidden on Mobile */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="absolute -right-3 top-8 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center shadow-sm hover:bg-surface-container-high transition-colors cursor-pointer ghost-border"
+        className="hidden md:flex absolute -right-3 top-8 w-6 h-6 rounded-full bg-surface-container-highest items-center justify-center shadow-sm hover:bg-surface-container-high transition-colors cursor-pointer ghost-border z-10"
       >
         <span className={`material-symbols-outlined text-sm text-on-surface-variant transition-transform ${collapsed ? 'rotate-180' : ''}`}>
           chevron_left

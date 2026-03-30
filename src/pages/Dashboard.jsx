@@ -212,17 +212,17 @@ export default function Dashboard() {
   return (
     <div className={`p-8 max-w-[1400px] mx-auto transition-all duration-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-[2rem] font-extrabold text-on-surface tracking-tight">Operations Dashboard</h1>
+          <h1 className="text-2xl md:text-[2rem] font-extrabold text-on-surface tracking-tight">Operations Dashboard</h1>
           <p className="text-sm text-on-surface-variant mt-1">Live System Status</p>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-surface-container-lowest rounded-xl px-4 py-2.5 ghost-border">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="flex items-center gap-2 bg-surface-container-lowest rounded-xl px-4 py-2.5 ghost-border shrink-0">
             <span className="material-symbols-outlined text-on-surface-variant text-lg">search</span>
-            <input type="text" placeholder="Search operations..." className="bg-transparent text-sm text-on-surface outline-none w-48 placeholder:text-on-surface-variant/50" />
+            <input type="text" placeholder="Search operations..." className="bg-transparent text-sm text-on-surface outline-none w-full sm:w-48 placeholder:text-on-surface-variant/50" />
           </div>
-          <button className="relative p-2.5 rounded-xl bg-surface-container-lowest ghost-border hover:bg-surface-container-high transition-colors">
+          <button className="relative p-2.5 rounded-xl bg-surface-container-lowest ghost-border hover:bg-surface-container-high transition-colors hidden md:block shrink-0">
             <span className="material-symbols-outlined text-on-surface-variant text-xl">notifications</span>
             <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-tertiary rounded-full" />
           </button>
@@ -230,7 +230,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         <StatCard icon="group" label="Predicted Footfall" value="1,450" subtext="Students Expected Today" accent />
         <StatCard icon="scale" label="Estimated Surplus" value="45kg" subtext="±2.4kg Deviation Range" />
         <StatCard icon="handshake" label="NGO Matched" value="3 Partners" subtext="Pickup in 2h 15m" />
@@ -238,13 +238,13 @@ export default function Dashboard() {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-2 gap-5 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
         <PredictionChart />
         <DishSurplus />
       </div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <ProximityMap />
         <VerificationSteps />
         <NGOAlerts />

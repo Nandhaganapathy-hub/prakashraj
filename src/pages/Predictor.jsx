@@ -7,8 +7,8 @@ function SuggestionBanner() {
   return (
     <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent rounded-xl p-5 ghost-border relative overflow-hidden mb-8">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="flex items-start gap-4 relative z-10">
-        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+      <div className="flex flex-col sm:flex-row items-start gap-4 relative z-10">
+        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 relative sm:static">
           <span className="material-symbols-outlined text-primary">auto_awesome</span>
         </div>
         <div className="flex-1">
@@ -17,7 +17,7 @@ function SuggestionBanner() {
             Predicted waste surge in perishable proteins. We suggest <strong className="text-on-surface">reducing Meat-Base orders by 15%</strong> for the next 48h cycle.
           </p>
         </div>
-        <button onClick={() => setDismissed(true)} className="text-on-surface-variant hover:text-on-surface transition-colors">
+        <button onClick={() => setDismissed(true)} className="absolute sm:static top-0 right-0 text-on-surface-variant hover:text-on-surface transition-colors">
           <span className="material-symbols-outlined text-lg">close</span>
         </button>
       </div>
@@ -212,12 +212,12 @@ export default function Predictor() {
   return (
     <div className={`p-8 max-w-[1400px] mx-auto transition-all duration-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
         <div>
           <p className="text-[0.625rem] uppercase tracking-widest text-on-surface-variant font-medium">AI PREDICTOR V4.2</p>
           <h1 className="text-[2rem] font-extrabold text-on-surface tracking-tight mt-1">Predictive Analytics</h1>
         </div>
-        <button className="btn-primary-gradient text-on-primary px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20">
+        <button className="btn-primary-gradient text-on-primary px-5 py-2.5 rounded-xl text-sm font-semibold transition-all hover:shadow-lg hover:shadow-primary/20 w-fit">
           <span className="flex items-center gap-2">
             <span className="material-symbols-outlined text-lg">download</span>
             Export Report
@@ -228,14 +228,14 @@ export default function Predictor() {
       <SuggestionBanner />
 
       {/* Main Grid */}
-      <div className="grid grid-cols-3 gap-5 mb-8">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
+        <div className="lg:col-span-2">
           <WasteVarianceForecast />
         </div>
         <NeuralTuning />
       </div>
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <RiskVariables />
         <LogisticsSync />
       </div>
